@@ -2,6 +2,7 @@ import './App.css'
 import Header from './Componentes/Header.jsx'
 import { Card, CardBody } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 
 
 
@@ -28,14 +29,21 @@ function App() {
             <p>Le damos la Bienvenida a esta increible herrmienta para ver el valor del Dolar</p>
           </section>
 
-          <Card>
-            <CardBody>
-              <p>Make beautiful websites regardless of your design experience.</p>
-            </CardBody>
-          </Card>
-
+          <div className='flex justify-center items-center mt-[-20px] z-10'>
+            <Card className='shadow-lg' style={{ boxShadow: '0 4px 6px 0 hsla(0, 0%, 0%, 0.4)' }}>
+              <CardBody>
+                <div className='flex space-x-4'>
+                  <Input type="email" label="Email" />
+                  <Input type="password" label="Password" />
+                  <Input type="text" label="Username" />
+                </div>
+              </CardBody>
+            </Card>
+          </div>
 
         </div>
+
+
 
 
       </div>
