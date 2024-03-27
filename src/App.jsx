@@ -8,10 +8,28 @@ import { Button } from "@nextui-org/react";
 
 
 
-
+import { getExchangeRate } from './Componentes/Api.jsx';
 import Banner from "./assets/3582.jpg"
 
 function App() {
+
+  const [currencies, setCurrencies] = useState([]);
+  const [fromCurrency, setFromCurrency] = useState('');
+  const [toCurrency, setToCurrency] = useState('');
+  const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
+
+  useEffect(() => {
+    // Obtén la lista de monedas de la API y almacénala en el estado
+    // Asegúrate de que esta función exista y haga lo que se supone que debe hacer
+    getAvailableCurrencies().then(setCurrencies);
+  }, []);
+
+  useEffect(() => {
+    if (fromCurrency && toCurrency && amount > 0) {
+      getExchangeRate(fromCurrency, toCurrency).then(rate => setConvertedAmount(amount * rate));
+    }
+  }, [fromCurrency, toCurrency, amount]);
 
   return (
     <>
@@ -33,25 +51,21 @@ function App() {
 
           {/* donde el usuario seleciona la moneda a convertir */}
           <div className='flex justify-center items-center mt-20 z-10'>
-            <Card className='shadow-lg sm:w-5/6 md:w-full lg:w-full xl:w-full h-auto' style={{ boxShadow: '0 4px 6px 0 hsla(0, 0%, 0%, 0.4)' }}>
+            <Card className='shadow-lg sm:w-[40rem] md:w-[40rem] lg:w-[50rem] xl:w-[70rem] h-[20rem]' style={{ boxShadow: '0 4px 6px 0 hsla(0, 0%, 0%, 0.4)' }}>
               <CardBody className='flex flex-col'>
                 {/* Primera fila: inputs y selects */}
                 <div className='flex flex-col sm:flex-row space-x-4'>
-                  <Input type="importe" label="Importe" />
-                  <Select
-                    label="Seleciona la moneda"
-                    className="max-w-xs"
-                  >
+                  <Input type="number" label="Importe" value={amount} onChange={e => setAmount(e.target.value)} />
+                  <Select label="Seleciona la moneda" className="max-w-xs" value={fromCurrency} onChange={e => setFromCurrency(e.target.value)}>
+                    {currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
                   </Select>
-                  <Select
-                    label="Moneda a convertir"
-                    className="max-w-xs"
-                  >
+                  <Select label="Moneda a convertir" className="max-w-xs" value={toCurrency} onChange={e => setToCurrency(e.target.value)}>
+                    {currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
                   </Select>
                 </div>
                 {/* Segunda fila: texto */}
                 <div className='mt-4'>
-                  <p>Hola, ¿cómo estás?</p>
+                <p>El valor convertido es: {convertedAmount}</p>
                 </div>
                 {/* Tercera fila: botón */}
                 <section className='flex justify-end mt-4'>
