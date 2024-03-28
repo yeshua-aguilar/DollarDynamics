@@ -136,7 +136,7 @@ function App() {
                 en mi tiempo libre. Espero que te haya ayudado.
               </p>
               <br />
-              <p>Repositorio Github: </p>
+              <p>Repositorio Github: <a>https://github.com/yeshua-aguilar/DollarDynamics</a> </p>
             </div>
           </div>
 
