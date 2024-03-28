@@ -56,7 +56,7 @@ function App() {
 
           <section className='text-center mt-[-200px] z-10'>
             <h2 className='text-4xl'>Conversor de divisas</h2>
-            <p>Le damos la Bienvenida a esta increible herrmienta para ver el valor del Dolar</p>
+            <p>Le damos la Bienvenida a esta increible herrmienta para ver el valor de la Moneda</p>
           </section>
 
           {/* donde el usuario seleciona la moneda a convertir */}
