@@ -79,9 +79,21 @@ function App() {
                 </div>
                 {/* Segunda fila: texto */}
                 <div className='mt-4'>
-                  {amount} de {fromCurrency.split(',')[0]} a {toCurrency.split(',')[0]} es igual a {convertedAmount}
+                  <p>
+                    {amount} {fromCurrency.split(',')[1]} convertida =
+                  </p>
+                  <p className='text-4xl'>
+                    {convertedAmount} de {toCurrency.split(',')[1]}
+                  </p>
                 </div>
-                {/* Tercera fila: botón */}
+                {/* Tercera fila: texto */}
+                <br />
+                <div>
+                  <p className='text-small'>
+                   Usamos la tasa del mercado medio para nuestro conversor. <br /> Esto solo tiene fines informativos. No recibirás esta tasa cuando envíes dinero.
+                  </p>
+                </div>
+                {/* Cuarta fila: botón */}
                 <section className='flex justify-end mt-4'>
                   <Button color="warning" onClick={handleConvert}>
                     Ver la conversion de la moneda
