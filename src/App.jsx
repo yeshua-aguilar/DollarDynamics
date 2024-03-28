@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
 import Header from './Componentes/Header.jsx'
+import Footer from './Componentes/Footer.jsx'
 import { Card, CardBody } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
@@ -11,6 +12,7 @@ import { Button } from "@nextui-org/react";
 
 import { getExchangeRate, getAvailableCurrencies } from './Componentes/Api.jsx';
 import Banner from "./assets/3582.jpg"
+import NextUI_Icon from "./assets/nextui.png"
 
 function App() {
 
@@ -130,18 +132,46 @@ function App() {
             <div>
               <p>Hola, ¿cómo estás?</p> <br />
               <p>Soy Yeshua Aguilar Creador de la pagina <br />
-                 este es uno de mis proyectos que he hecho <br />
-                 en mi tiempo libre. Espero que te haya ayudado.
+                este es uno de mis proyectos que he hecho <br />
+                en mi tiempo libre. Espero que te haya ayudado.
               </p>
               <br />
               <p>Repositorio Github: </p>
             </div>
           </div>
 
+          <div className='mt-20 flex items-center space-x-10'>
+              <Image
+                width={240}
+                src={NextUI_Icon}
+                alt="NextUI"
+                classNames="m-5"
+              />
+              <Image
+                width={240}
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1200px-React.svg.png"
+                alt="NextUI"
+                classNames="m-5"
+              />
+              <Image
+                width={240}
+                src="https://miro.medium.com/v2/resize:fit:1200/1*udvSMrSVGOgD4fxjMJHbOw.jpeg"
+                alt="NextUI"
+                classNames="m-5"
+              />
+              <Image
+                width={240}
+                src="https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/483c89d0-86f6-49ec-b8bd-3dec5bd1e1d3.png?fit=clip&auto=format&dpr=2"
+                alt="NextUI"
+                classNames="m-5"
+              />
+          </div>
+
         </div>
 
+        <br />
 
-
+        <Footer />
 
       </div>
     </>
