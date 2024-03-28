@@ -1,7 +1,7 @@
-const API_KEY = 'bbaef4f4f7fdced29774fbd0'; // Reemplaza esto con tu API key
+const API_KEY = 'bbaef4f4f7fdced29774fbd0';
 
-export async function getExchangeRate(fromCurrency, toCurrency) {
-  const response = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${fromCurrency}`);
+export async function getExchangeRate(fromCurrency, toCurrency, amount) {
+  const response = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${fromCurrency}/${toCurrency}/${amount}`);
   
   if (!response.ok) {
     throw new Error(`An error occurred: ${response.statusText}`);
@@ -9,12 +9,16 @@ export async function getExchangeRate(fromCurrency, toCurrency) {
 
   const data = await response.json();
 
-  const rate = data.rates[toCurrency];
-  if (!rate) {
+  if (data.result !== 'success') {
     throw new Error(`Could not find the exchange rate from ${fromCurrency} to ${toCurrency}`);
   }
 
-  return rate;
+  // Verifica si 'conversion_result' existe en 'data' antes de intentar acceder a él
+  if (data.conversion_result) {
+    return data.conversion_result;
+  } else {
+    throw new Error(`The API response does not include a 'conversion_result' property`);
+  }
 }
 
 export async function getAvailableCurrencies() {

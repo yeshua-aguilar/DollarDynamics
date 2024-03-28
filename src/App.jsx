@@ -26,11 +26,20 @@ function App() {
     getAvailableCurrencies().then(setCurrencies);
   }, []);
 
-  useEffect(() => {
-    if (fromCurrency && toCurrency && amount > 0) {
-      getExchangeRate(fromCurrency, toCurrency).then(rate => setConvertedAmount(amount * rate));
-    }
-  }, [fromCurrency, toCurrency, amount]);
+  const handleConvert = async () => {
+    // Asegúrate de que 'fromCurrency' y 'toCurrency' son solo los códigos de las monedas, no los nombres de las monedas.
+    let fromCurrencyCode = fromCurrency.split(',')[0];
+    let toCurrencyCode = toCurrency.split(',')[0];
+
+    // Asegúrate de que 'amount' es un número.
+    let amountNumber = Number(amount);
+
+    // Luego, puedes pasar estos valores a la función 'getExchangeRate'.
+    const result = await getExchangeRate(fromCurrencyCode, toCurrencyCode, amountNumber);
+
+    // Almacena el resultado en el estado
+    setConvertedAmount(result);
+  }
 
   return (
     <>
@@ -59,22 +68,22 @@ function App() {
                   <Input type="number" label="Importe" value={amount} onChange={e => setAmount(e.target.value)} />
                   <Select label="Seleciona la moneda" className="max-w-xs" value={fromCurrency} onChange={e => setFromCurrency(e.target.value)}>
                     {currencies.map(currency =>
-                      <SelectItem key={currency} value={currency}>{currency}</SelectItem>
+                      <SelectItem key={currency} value={currency} textValue={currency}>{currency}</SelectItem>
                     )}
                   </Select>
                   <Select label="Moneda a convertir" className="max-w-xs" value={toCurrency} onChange={e => setToCurrency(e.target.value)}>
                     {currencies.map(currency =>
-                      <SelectItem key={currency} value={currency}>{currency}</SelectItem>
+                      <SelectItem key={currency} value={currency} textValue={currency}>{currency}</SelectItem>
                     )}
                   </Select>
                 </div>
                 {/* Segunda fila: texto */}
                 <div className='mt-4'>
-                  <p>El valor convertido es: {convertedAmount}</p>
+                  {amount} de {fromCurrency.split(',')[0]} a {toCurrency.split(',')[0]} es igual a {convertedAmount}
                 </div>
                 {/* Tercera fila: botón */}
                 <section className='flex justify-end mt-4'>
-                  <Button color="warning">
+                  <Button color="warning" onClick={handleConvert}>
                     Ver la conversion de la moneda
                   </Button>
                 </section>
