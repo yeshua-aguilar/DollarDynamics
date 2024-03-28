@@ -65,8 +65,8 @@ function App() {
               <CardBody className='flex flex-col'>
                 {/* Primera fila: inputs y selects */}
                 <div className='flex flex-col sm:flex-row space-x-4'>
-                  <Input type="number" label="Importe" value={amount} onChange={e => setAmount(e.target.value)} />
-                  <Select label="Seleciona la moneda" className="max-w-xs" value={fromCurrency} onChange={e => setFromCurrency(e.target.value)}>
+                  <Input type="number" label="Importe" value={amount} onChange={e => setAmount(e.target.value)} /> {/* input donde se pone la cantidad */}
+                  <Select label="Seleciona la moneda" className="max-w-xs" value={fromCurrency} onChange={e => setFromCurrency(e.target.value)}> {/* Estos son los Select que hace que moneda queires elegir */}
                     {currencies.map(currency =>
                       <SelectItem key={currency} value={currency} textValue={currency}>{currency}</SelectItem>
                     )}
@@ -90,7 +90,7 @@ function App() {
                 <br />
                 <div>
                   <p className='text-small'>
-                   Usamos la tasa del mercado medio para nuestro conversor. <br /> Esto solo tiene fines informativos. No recibirás esta tasa cuando envíes dinero.
+                    Usamos la tasa del mercado medio para nuestro conversor. <br /> Esto solo tiene fines informativos. No recibirás esta tasa cuando envíes dinero o lo recibas.
                   </p>
                 </div>
                 {/* Cuarta fila: botón */}
@@ -102,6 +102,40 @@ function App() {
 
               </CardBody>
             </Card>
+          </div>
+
+          <div className='mt-40'>
+            <p className='text-center text-2xl'>API de ExchangeRate-API</p>
+            <br />
+            <p>🌍 Tipos de conversión de 161 divisas</p>
+            <p>🏆 Más de 10 años de tiempo de actividad y asistencia excepcionales.</p>
+            <p>✅ Perfecto para SaaS, cuadros de mando y comercio electrónico.</p>
+            <br />
+            <section className='flex justify-center'>
+              <Button color="primary" onClick={() => window.open('https://www.exchangerate-api.com/', '_blank')}>
+                Ver mas informacion
+              </Button>
+            </section>
+          </div>
+
+          <div className='bg-orange-400 w-full h-auto mt-40 flex items-center justify-center p-10'>
+            <div className='mr-40'>
+              <Image
+                isZoomed
+                width={240}
+                alt="Yeshua-Aguilar"
+                src="https://github.com/yeshua-aguilar.png"
+              />
+            </div>
+            <div>
+              <p>Hola, ¿cómo estás?</p> <br />
+              <p>Soy Yeshua Aguilar Creador de la pagina <br />
+                 este es uno de mis proyectos que he hecho <br />
+                 en mi tiempo libre. Espero que te haya ayudado.
+              </p>
+              <br />
+              <p>Repositorio Github: </p>
+            </div>
           </div>
 
         </div>
