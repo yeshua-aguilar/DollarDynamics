@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import './App.css'
 import Header from './Componentes/Header.jsx'
 import { Card, CardBody } from "@nextui-org/react";
@@ -8,7 +9,7 @@ import { Button } from "@nextui-org/react";
 
 
 
-import { getExchangeRate } from './Componentes/Api.jsx';
+import { getExchangeRate, getAvailableCurrencies } from './Componentes/Api.jsx';
 import Banner from "./assets/3582.jpg"
 
 function App() {
@@ -57,15 +58,19 @@ function App() {
                 <div className='flex flex-col sm:flex-row space-x-4'>
                   <Input type="number" label="Importe" value={amount} onChange={e => setAmount(e.target.value)} />
                   <Select label="Seleciona la moneda" className="max-w-xs" value={fromCurrency} onChange={e => setFromCurrency(e.target.value)}>
-                    {currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                    {currencies.map(currency =>
+                      <SelectItem key={currency} value={currency}>{currency}</SelectItem>
+                    )}
                   </Select>
                   <Select label="Moneda a convertir" className="max-w-xs" value={toCurrency} onChange={e => setToCurrency(e.target.value)}>
-                    {currencies.map(currency => <option key={currency} value={currency}>{currency}</option>)}
+                    {currencies.map(currency =>
+                      <SelectItem key={currency} value={currency}>{currency}</SelectItem>
+                    )}
                   </Select>
                 </div>
                 {/* Segunda fila: texto */}
                 <div className='mt-4'>
-                <p>El valor convertido es: {convertedAmount}</p>
+                  <p>El valor convertido es: {convertedAmount}</p>
                 </div>
                 {/* Tercera fila: botón */}
                 <section className='flex justify-end mt-4'>
